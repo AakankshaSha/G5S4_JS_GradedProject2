@@ -3,7 +3,7 @@
     margin: 0;
 }
 body {
-    background: url(../images/bg-img.jpg) no-repeat;
+    background: url(../images/bg-img.jpg) repeat;
     background-size: cover;
     align-items: center;
     justify-content: center;
@@ -11,7 +11,7 @@ body {
     font-family: sans-serif;
 }
 
-.container {
+.login-container {
     position: relative;
     margin-top: 100px;
     width: 450px;

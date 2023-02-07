@@ -144,6 +144,25 @@ ul {
 .technicalSkillsList, 
 .hobbiesList {
     margin-top: 0px;
+    padding-left: 0px;
+}
+
+@media screen and (max-width: 600px) {
+    .profileImgContainer img {
+        top: 6px;
+        right: 5px;
+    }
+    .resumeHeader #applicantName {
+        font-size: 30px;
+    }
+    .search-btn-container input {
+        width: 44%;
+        margin: 0 10px;
+        text-overflow: ellipsis;
+    }
+    .buttonStyle {
+        width: 17%;
+    }
 }
 
 
