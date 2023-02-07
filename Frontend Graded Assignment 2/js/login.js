@@ -1,10 +1,35 @@
+const validUserData = [{
+        username: "asharma",
+        password: "Ashar@321!"
+    },{
+        username: "sarvani",
+        password: "Sar2023!@#"
+    },{
+        username: "aritra",
+        password: "Arit$77#!"
+    }
+];
+
+// To store validUserData as valid username and password in the local-storage
+localStorage.setItem('LoginUsers', JSON.stringify(validUserData));
+
 // Validation code for inputs
 const userName = document.getElementById('username');
 const password = document.getElementById('password');
 const errorElem = document.getElementById('error');
 
-userName.addEventListener('textInput', username_verify);
-password.addEventListener('textInput', password_verify);
+userName.addEventListener('input', username_verify);
+password.addEventListener('input', password_verify);
+
+// Submit event gets triggered
+document.querySelector('.login_form').addEventListener('submit', function(e) {
+
+    // Prevent the form from submitting
+    e.preventDefault();
+
+    // validated() will be called when the form is submitted
+    validated();
+});
 
 // function to validate input fields
 function validated() {
@@ -18,7 +43,7 @@ function validated() {
         errorElem.style.display = 'block';
         userName.focus();
         return false;
-    }else if (password.value.length === 0) {
+    } else if (password.value.length === 0) {
         password.style.border = '1px solid red';
         errorElem.style.display = 'block';
         password.focus();
@@ -28,6 +53,7 @@ function validated() {
     }
 }
 
+// function to verify the username
 function username_verify() {
     if (userName.value.length > 0) {
         userName.style.border = '1px solid silver';
@@ -36,6 +62,7 @@ function username_verify() {
     }
 }
 
+// function to verify the password
 function password_verify() {
     if (password.value.length > 0) {
         password.style.border = '1px solid silver';
@@ -44,6 +71,7 @@ function password_verify() {
     }
 }
 
+// function to verify that the entered credentials are valid (same as in the local-storage) and navigate to resume-page
 function login() {
     if (localStorage.getItem('LoginUsers')) {
         const userDetails = JSON.parse(localStorage.getItem('LoginUsers'));
@@ -61,8 +89,9 @@ function login() {
         if (currentUser.password === password.value) {
             alert('You are successfully logged in');
 
-            // Navigate to resume viewer
+            // Navigate to resume page
             window.location.href = "./resume-page.html";
+            return true;
         } 
         if (password.value.length !== 0) {
             console.log('Invalid Username/Password.');
@@ -72,11 +101,5 @@ function login() {
         }
     } else 
         alert('User details is not stored');
-}
-
-// This function will restrict the user from going back to the login page (Once the user is in the Resume page)
-window.history.forward();
-function noBack() {
-  window.history.forward();
 }
 
